@@ -1,19 +1,26 @@
 {
-  "name": "devinit",
-  "version": "1.0.0",
-  "description": "Friendly open source contribution",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Kmelow/devinit.git"
-  },
-  "author": "Kmelow",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Kmelow/devinit/issues"
-  },
-  "homepage": "https://github.com/Kmelow/devinit#readme"
+	"name": "devinit",
+	"version": "1.0.0",
+	"description": "Friendly open source contribution",
+	"main": "index.js",
+	"engines": {
+		"node": "10.15.0",
+		"npm": "6.9.2"
+	},
+	"script": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/Kmelow/devinit.git"
+	},
+	"author": "Kmelow",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Kmelow/devinit/issues"
+	},
+	"homepage": "https://github.com/Kmelow/devinit#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
 }
