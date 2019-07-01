@@ -1,0 +1,19 @@
+{
+  "name": "devinit",
+  "version": "1.0.0",
+  "description": "Friendly open source contribution",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Kmelow/devinit.git"
+  },
+  "author": "Kmelow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kmelow/devinit/issues"
+  },
+  "homepage": "https://github.com/Kmelow/devinit#readme"
+}
