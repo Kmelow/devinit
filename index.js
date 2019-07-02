@@ -7,11 +7,11 @@ const connectDB = require('./config/db');
 
 // Loading routes
 
-// Starting app
-const app = express();
-
 // Connecting DB
 connectDB();
+
+// Starting app
+const app = express();
 
 // Using routes
 app.get('/', (req, res) => res.send('Hello World! ...'));
