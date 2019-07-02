@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const config = require('config');
-const db = config.get('mongoURI');
+// FUTURE: add this line
+// const db = config.get('mongoURI');
+// FUTURE: remove these lines
+const keys = require('./keys');
+const db = keys.mongoURI;
 
 const connectDB = async () => {
 	try {
