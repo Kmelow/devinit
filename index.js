@@ -5,6 +5,7 @@ const keys = require('./config/keys');
 
 // Loading mongoose schemas
 require('./models/User');
+require('./models/Profile');
 
 // Loading routes
 
