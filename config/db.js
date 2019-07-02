@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 // const config = require('config');
 // const db = config.get('mongoURI');
 // FUTURE: remove these lines
-const { mongoURI } = require('./keys');
+const keys = require('./keys');
 
 const connectDB = async () => {
 	try {
-		await mongoose.connect(mongoURI, { useNewUrlParser: true });
+		await mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 		console.log('Mongo connected');
 	} catch (err) {
