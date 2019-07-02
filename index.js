@@ -19,6 +19,9 @@ try {
 // Starting app
 const app = express();
 
+// Body parsing middleware
+app.use(express.json({ extended: false }));
+
 // Using routes
 app.get('/', (req, res) => res.send('Hello World! ...'));
 app.use('/api/users', require('./routes/api/users'));
