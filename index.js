@@ -8,18 +8,22 @@ const connectDB = require('./config/db');
 // Loading routes
 
 // Connecting DB
-connectDB();
+try {
+	mongoose.connect(keys.mongoURI, { useNewUrlParser: true }).then(console.log('Mongo connected'));
+} catch (err) {
+	console.error('ERROR ON MONGOOSE CONNECTION: ', err.message);
+	process.exit(1);
+}
 
 // Starting app
 const app = express();
 
 // Using routes
 app.get('/', (req, res) => res.send('Hello World! ...'));
-// app.use('/api/auth', require('./routes/api/auth'));
-// app.use('/api/posts', require('./routes/api/posts'));
-// app.use('/api/profile', require('./routes/api/profile'));
-// app.use('/api/users', require('./routes/api/users'));
-// require('./routes/...')(app);
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/posts', require('./routes/api/posts'));
+app.use('/api/profile', require('./routes/api/profile'));
 
 if (process.env.NODE_ENV === 'production') {
 	// Express serves production assets (main.css)
