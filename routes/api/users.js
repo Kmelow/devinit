@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const keys = require('../../config/keys');
+const jwt = require('jsonwebtoken');
 
 const User = mongoose.model('users');
 
@@ -53,10 +55,17 @@ router.post(
 
 			await user.save();
 
-			// Return JWT
+			// Payload and token signin
+			const payload = {
+				user: {
+					id: user.id
+				}
+			};
 
-			console.log(req.body);
-			res.send('User registered');
+			jwt.sign(payload, keys.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+				if (err) throw err;
+				res.json({ token });
+			});
 		} catch (err) {
 			console.error('FAILLED TO SIGN USER: ', err.message);
 			res.status(500).send('Server error');
