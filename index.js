@@ -1,24 +1,24 @@
 // Basic modules
 const express = require('express');
-const connectDB = require('./config/db');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 
 // Loading mongoose schemas
-// require('./models/User');
+require('./models/User');
 
 // Loading routes
 
-// Connecting to the database
-connectDB();
+// Connecting to database
+mongoose
+	.connect(keys.mongoURI, { useNewUrlParser: true })
+	.then(console.log('Mongo connected'))
+	.catch((err) => console.log(err));
 
 // Starting app
 const app = express();
 
 // Using routes
 app.get('/', (req, res) => res.send('Hello World! ...'));
-// app.use('/api/auth', require('./routes/api/auth'));
-// app.use('/api/posts', require('./routes/api/posts'));
-// app.use('/api/profile', require('./routes/api/profile'));
-// app.use('/api/users', require('./routes/api/users'));
 // require('./routes/...')(app);
 
 if (process.env.NODE_ENV === 'production') {
