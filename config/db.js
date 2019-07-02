@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // const db = config.get('mongoURI');
 // FUTURE: remove these lines
 const keys = require('./keys');
+// const db = keys.mongoURI;
 
 const connectDB = async () => {
 	try {
@@ -11,7 +12,7 @@ const connectDB = async () => {
 
 		console.log('Mongo connected');
 	} catch (err) {
-		console.error(err.message);
+		console.error('ERROR ON MONGO CONNECTION: ', err);
 		process.exit(1);
 	}
 };
