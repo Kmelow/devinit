@@ -25,8 +25,15 @@
 	},
 	"homepage": "https://github.com/Kmelow/devinit#readme",
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"concurrently": "^4.1.1",
+		"config": "^3.1.0",
 		"express": "^4.17.1",
-		"mongoose": "^5.6.2"
+		"express-validator": "^6.1.1",
+		"gravatar": "^1.8.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.6.2",
+		"path": "^0.12.7",
+		"request": "^2.88.0"
 	}
 }
