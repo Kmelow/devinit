@@ -1,14 +1,20 @@
 // Basic modules
 const express = require('express');
-const connectDB = require('./config/db');
+// const connectDB = require('./config/db');	<= replace below
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 
 // Loading mongoose schemas
 // require('./models/User');
 
 // Loading routes
 
-// Connecting DB
-connectDB();
+// Connecting to the database
+// connectDB();		<= to replace the code below
+mongoose
+	.connect(keys.mongoURI, { useNewUrlParser: true })
+	.then(console.log('Mongo connected'))
+	.catch((err) => console.log(err));
 
 // Starting app
 const app = express();
