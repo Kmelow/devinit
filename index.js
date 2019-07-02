@@ -10,7 +10,12 @@ require('./models/User');
 
 // Connecting DB
 try {
-	mongoose.connect(keys.mongoURI, { useNewUrlParser: true }).then(console.log('Mongo connected'));
+	mongoose
+		.connect(keys.mongoURI, {
+			useNewUrlParser: true,
+			useCreateIndex: true
+		})
+		.then(console.log('Mongo connected'));
 } catch (err) {
 	console.error('ERROR ON MONGOOSE CONNECTION: ', err.message);
 	process.exit(1);
