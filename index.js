@@ -19,6 +19,7 @@ const app = express();
 
 // Using routes
 app.get('/', (req, res) => res.send('Hello World! ...'));
+app.use('/api/users', require('./routes/api/users'));
 // require('./routes/...')(app);
 
 if (process.env.NODE_ENV === 'production') {
