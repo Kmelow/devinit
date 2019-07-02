@@ -4,17 +4,27 @@ const mongoose = require('mongoose');
 // const db = config.get('mongoURI');
 // FUTURE: remove these lines
 const keys = require('./keys');
-const db = keys.mongoURI;
+// const db = keys.mongoURI;
 
 const connectDB = async () => {
 	try {
-		await mongoose.connect(db, { useNewUrlParser: true });
+		await mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
-		console.log('Mongo connected (config)');
+		console.log('Mongo connected');
 	} catch (err) {
-		console.error(err.message);
-		process.exit(1);
+		console.log(err);
 	}
 };
+
+// const connectDB = async () => {
+// 	try {
+// 		await mongoose.connect(db, { useNewUrlParser: true });
+
+// 		console.log('Mongo connected (config)');
+// 	} catch (err) {
+// 		console.error(err.message);
+// 		process.exit(1);
+// 	}
+// };
 
 module.exports = connectDB;
