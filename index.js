@@ -14,7 +14,8 @@ try {
 	mongoose
 		.connect(keys.mongoURI, {
 			useNewUrlParser: true,
-			useCreateIndex: true
+			useCreateIndex: true,
+			useFindAndModify: false
 		})
 		.then(console.log('Mongo connected'));
 } catch (err) {
