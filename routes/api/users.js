@@ -7,7 +7,12 @@ const bcrypt = require('bcryptjs');
 const keys = require('../../config/keys');
 const jwt = require('jsonwebtoken');
 
-const User = mongoose.model('users');
+const User = require('../../models/User');
+
+// @route 	GET api/users
+// @desc		Test users route
+// @access	Public
+router.get('/', (req, res) => res.send('Welcome to Users route'));
 
 // @route 	POST api/users
 // @desc		Register user

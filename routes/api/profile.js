@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
 const authMW = require('../../middlware/auth');
 
-const Profile = mongoose.model('profile');
-const User = mongoose.model('users');
+const Profile = require('../../models/Profile');
+const User = require('../../models/User');
 
 // @route 	GET api/profile/me
 // @desc		Get current's user profile
@@ -81,17 +81,32 @@ router.post(
 			if (profile) {
 				// Update
 				profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
+
 				return res.json(profile);
 			}
 
 			// Create
 			profile = new Profile(profileFields);
 			await profile.save();
-			return res.json(profile);
+			res.json(profile);
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send(' Error with fetching profile ');
 		}
 	}
 );
+
+// @route 	GET api/profile
+// @desc		Get all profiles
+// @access	Public
+router.get('/', async (req, res) => {
+	try {
+		const profiles = await Profile.find().populate('users', [ 'name', 'avatar' ]);
+		res.json(profiles);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Error fetching profiles');
+	}
+});
+
 module.exports = router;
