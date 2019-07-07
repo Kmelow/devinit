@@ -20,9 +20,13 @@ router.get('/', (req, res) => res.send('Welcome to Users route'));
 router.post(
 	'/',
 	[
-		check('name', 'Name is required').not().isEmpty(),
+		check('name', 'Name is required')
+			.not()
+			.isEmpty(),
 		check('email', 'Please include a valid e-mail').isEmail(),
-		check('password', 'Password must have more than 5 characters').isLength({ min: 6 })
+		check('password', 'Password must have more than 5 characters').isLength({
+			min: 6
+		})
 	],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -35,7 +39,9 @@ router.post(
 			// Check if user already exists
 			let user = await User.findOne({ email });
 			if (user) {
-				return res.status(400).json({ errors: [ { msg: 'User already exists' } ] });
+				return res
+					.status(400)
+					.json({ errors: [{ msg: 'User already exists' }] });
 			}
 
 			// Fetch user's gravatar
