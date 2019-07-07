@@ -25,7 +25,7 @@ router.get('/me', authMW, async (req, res) => {
 		res.json(profile);
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).setDefaultEncoding('Error on fetching profile');
+		res.status(500).send('Error on fetching profile');
 	}
 });
 
@@ -48,7 +48,7 @@ router.post(
 	async (req, res) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
-			return res.status(400).send({ errors: errors.array() });
+			return res.status(400).json({ errors: errors.array() });
 		}
 
 		const {
@@ -141,7 +141,7 @@ router.get('/user/:user_id', async (req, res) => {
 	} catch (err) {
 		console.error(err.message);
 		if (err.kind === 'ObjectId') {
-			return res.status(400).json({ msg: 'Profile not found' });
+			return res.status(400).send({ msg: 'Profile not found' });
 		}
 
 		res.status(500).send('Error fetching profiles');
@@ -219,7 +219,7 @@ router.put(
 			res.json(profile);
 		} catch (err) {
 			console.error(err.message);
-			res.status(500).json('Error adding experience');
+			res.status(500).send('Error adding experience');
 		}
 	}
 );
@@ -242,7 +242,7 @@ router.delete('/experience/:xp_id', authMW, async (req, res) => {
 		res.json(profile);
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).json('Error removing experience');
+		res.status(500).send('Error removing experience');
 	}
 });
 
@@ -302,7 +302,7 @@ router.put(
 			res.json(profile);
 		} catch (err) {
 			console.error(err.message);
-			res.status(500).json('Error adding education');
+			res.status(500).send('Error adding education');
 		}
 	}
 );
@@ -325,7 +325,7 @@ router.delete('/education/:edu_id', authMW, async (req, res) => {
 		res.json(profile);
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).json('Error removing education');
+		res.status(500).send('Error removing education');
 	}
 });
 
@@ -349,7 +349,7 @@ router.get('/github/:username', (req, res) => {
 		});
 	} catch (err) {
 		console.error(err.message);
-		res.status(500).json(' Failled to fetch repos from Github ');
+		res.status(500).send(' Failled to fetch repos from Github ');
 	}
 });
 
