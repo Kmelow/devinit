@@ -12,7 +12,7 @@ const User = require('../../models/User');
 // @access	Private
 router.get('/me', authMW, async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.user.id }).populate('users', [ 'name', 'avatar' ]);
+		const profile = await Profile.findOne({ user: req.user.id }).populate('user', [ 'name', 'avatar' ]);
 
 		if (!profile) {
 			return res.status(400).json({ msg: 'No profile for this user' });
@@ -101,7 +101,7 @@ router.post(
 // @access	Public
 router.get('/', async (req, res) => {
 	try {
-		const profiles = await Profile.find().populate('users', [ 'name', 'avatar' ]);
+		const profiles = await Profile.find().populate('user', [ 'name', 'avatar' ]);
 		res.json(profiles);
 	} catch (err) {
 		console.error(err.message);
